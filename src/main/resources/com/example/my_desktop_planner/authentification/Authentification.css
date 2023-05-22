@@ -1,0 +1,58 @@
+#pane {
+    /* Set the arc width and height */
+    -fx-arc-width: 50px;
+    -fx-arc-height: 50px;
+     -fx-background-color: #ffffff ;
+
+    /* Set the corner radius */
+    -fx-background-radius: 25px;
+
+}
+
+#Pane {
+    /* Set the arc width and height */
+    -fx-arc-width: 50px;
+    -fx-arc-height: 50px;
+
+    /* Set the corner radius */
+    -fx-background-radius: 20px;
+
+
+
+
+        -fx-background-radius: 10px; /* Adjust the border radius as desired */
+
+
+
+}
+
+#welcome{
+    -fx-font-size: 25px;
+    -fx-text-fill: #0000ff; /* Replace with your desired text color */
+    -fx-font-weight: bold;
+    -fx-font-family: "Helvetica Neue";
+}
+
+
+
+
+
+
+
+
+
+
+ #text1{
+
+     -fx-text-fill: #0000ff; /* Replace with your desired text color */
+
+     -fx-font-family: "Avenir";
+ }
+
+  #text2{
+
+      -fx-text-fill: #0000ff; /* Replace with your desired text color */
+
+      -fx-font-family: "Avenir";
+  }
+
