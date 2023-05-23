@@ -106,5 +106,10 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
         else return false ;
     }
 
+    public boolean crenLibre(){
+        if (bloque=true) return false ;
+        else return true ;
+    }
+
 
 }

@@ -2,14 +2,20 @@ package com.example.my_desktop_planner;
 
 import com.example.my_desktop_planner.Gestion.App;
 import com.example.my_desktop_planner.Gestion.SerUtilisateur;
+import com.example.my_desktop_planner.Gestion.Utilisateur;
+import com.example.my_desktop_planner.Planification.Calendrier;
 import com.example.my_desktop_planner.Planification.Creneau;
+import com.example.my_desktop_planner.Planification.Journée;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.TreeSet;
 
 public class HelloApplication extends Application {
     @Override
