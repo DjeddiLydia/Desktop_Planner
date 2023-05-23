@@ -116,22 +116,6 @@ public class AuthentificationConto implements Initializable {
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
 
-       /* try {
-
-            //add you loading or delays - ;-)
-            Node node = (Node) event.getSource();
-            Stage stage = (Stage) node.getScene().getWindow();
-
-            //stage.setMaximized(true);
-            stage.close();
-            Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Login.fxml")));
-            stage.setScene(scene);
-            stage.show();
-
-        } catch (IOException ex) {
-            System.err.println(ex.getMessage());
-        }*/
-
     }
 
 

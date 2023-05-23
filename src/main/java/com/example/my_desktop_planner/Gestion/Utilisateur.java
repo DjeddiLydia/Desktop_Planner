@@ -15,7 +15,7 @@ public class Utilisateur {
 
     private String pseudo ;
 
-    private Calendrier calendrier  ;
+    private Calendrier calendrier = new Calendrier()  ;
 
     private Planning planning  ;
 

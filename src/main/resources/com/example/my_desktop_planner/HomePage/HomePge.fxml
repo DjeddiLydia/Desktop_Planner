@@ -29,7 +29,7 @@
          <left>
             <AnchorPane prefHeight="611.0" prefWidth="140.0" style="-fx-background-color: #A7D2F7;" BorderPane.alignment="CENTER">
                <children>
-                  <Button layoutX="17.0" layoutY="64.0" mnemonicParsing="false" text="Ajouter Planning" />
+                  <Button fx:id="ajouterPlanning" layoutX="17.0" layoutY="64.0" mnemonicParsing="false" text="Ajouter Planning" />
                   <Button layoutX="19.0" layoutY="123.0" mnemonicParsing="false" text="Ajouter Taches" />
                </children>
             </AnchorPane>
