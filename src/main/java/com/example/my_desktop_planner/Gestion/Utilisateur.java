@@ -9,8 +9,7 @@ import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.Date;
-import java.util.Iterator;
+import java.util.*;
 
 public class Utilisateur {
 
@@ -20,7 +19,7 @@ public class Utilisateur {
 
     private Planning planning  ;
 
-    private Tache[] taches_user ;
+    private ArrayList<Tache >  taches ;
 
     private Journée selectedDay ; //La journée sélectionnée par l'utilisateur
 
@@ -63,26 +62,15 @@ public class Utilisateur {
               if (c.crenLibre())  {
                   //On va manipuler que les taches simples
                   if (c.ajoutTache(t)) {
-                      Creneau c1 = c.decomposer_cr();
-                      if (c1 != null) {
-                          //Rajouter le créneau à la journée trouvée dans la recherche
-                          jr.AjouterCreneau(c1);
-                      }
+                      c.decomposer(planning);
+                      c.rendreoccupé();
                   }
+                  else System.out.println("On peut pas rajouter la tache au créneau");
               }
           }
     }
 
 
-    public void PlanifAuto(LocalDate debut , LocalDate fin , Tache[] taches ){
-          for (Tache t : taches ){
-              /**Rechercher d'abord un créneau libre convenable à la tache*/
-
-              if (t instanceof TacheSimple){
-
-              }
-          }
-    }
 
     public void ajouterPlanning(LocalDate debut , LocalDate fin ){
         if (Planning.verifDateDebut(debut) && Planning.verifDateFin(debut,fin)){
@@ -91,7 +79,58 @@ public class Utilisateur {
         }
     }
 
+    //Rajouter un créneau pour toutes les journées du planning
+    public void ajouterCreneauPeriode(LocalDate debut , LocalDate fin,Creneau c){
+        if (planning.periodeIncluse(debut,fin)) {
+            LocalDate date = debut;
+            while (!date.isAfter(fin)) {
+                Creneau c1 = c.copie() ;
+                c1.setJournée(date);
+                if (planning.Rechjournee(date) != null) planning.Rechjournee(date).ajouterCreneau(c1);
+                else {
+                    Journée jr = new Journée(date);
+                    jr.ajouterCreneau(c1);
+                    planning.ajouterjournée(jr);
+                }
+                date = date.plusDays(1);
+            }
+        }
+    }
 
+    public void ajoutercreneau(LocalDate date, Creneau c){
+        if (planning.Rechjournee(date) != null) planning.Rechjournee(date).ajouterCreneau(c);
+        else {
+            Journée jr = new Journée(date);
+            jr.ajouterCreneau(c);
+            planning.ajouterjournée(jr);
+        }
+    }
+
+
+    //Trier le tableau des taches selon la priorité puis la date deadline puis l'heure du deadline
+    public void trierTaches(){
+        Collections.sort(taches , Comparator.comparing(Tache :: getDateLimite).thenComparing(Tache :: getHeurelimite).thenComparing(Tache :: getPriorité));
+    }
+
+
+    public void PlanifAuto(){
+        int i=0 ;
+        while(i!= taches.size()){
+            Tache t = taches.get(i) ;
+            //Rechercher un créneau libre correspondant
+
+        }
+    }
+
+    public void setTaches(ArrayList<Tache > t) {
+        taches = t ;
+    }
+
+    public void affichTaches(){
+        for(Tache t : taches ){
+            System.out.println(t.getNom());
+        }
+    }
 
 
 }

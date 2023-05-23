@@ -26,13 +26,6 @@ public class Calendrier {
     }
 
     public Journée Rechjournee(LocalDate d ){
-       /* Iterator<Journée> iterator = journées.iterator() ;
-        Journée jr =  iterator.next();
-        while((jr.getDate() != d) && iterator.hasNext()){
-            jr =  iterator.next();
-        }
-        if(jr.getDate() == d) return  jr ;
-        else return null ;*/
 
         for (Journée j : journées ){
             if (j.getDate().equals(d)) {

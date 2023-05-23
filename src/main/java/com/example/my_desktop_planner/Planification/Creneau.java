@@ -4,11 +4,13 @@ import com.example.my_desktop_planner.Taches_Prj.Tache;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
 public class Creneau implements Comparable <Creneau> , Decomposable{
     private boolean libre;
+    private LocalDate datejournée ;
     private LocalTime debut;
     private LocalTime fin;
     private Duration duree;
@@ -17,12 +19,13 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
     private boolean bloque ;
 
 
-    public  Creneau(LocalTime d, LocalTime f, Duration min) {
+    public  Creneau(LocalTime d, LocalTime f, Duration min ) {
         this.libre = true;
         this.debut = d;
         this.fin = f;
         this.duree = Duration.between(this.debut, this.fin);
         this.dureemin = min;
+        this.bloque = false ;
     }
 
     public  Creneau(LocalTime d, LocalTime f) {
@@ -30,7 +33,21 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
         this.debut = d;
         this.fin = f;
         this.duree = Duration.between(this.debut, this.fin);
+        this.bloque = false ;
+    }
 
+    public Creneau(LocalTime d, LocalTime f, Duration min, LocalDate djr ) {
+        this.libre = true;
+        this.debut = d;
+        this.fin = f;
+        this.duree = Duration.between(this.debut, this.fin);
+        this.dureemin = min;
+        this.bloque = false ;
+        this.datejournée = djr ;
+    }
+
+    public LocalDate getDatejournée() {
+        return datejournée;
     }
 
     public Duration getDuree() {
@@ -42,6 +59,14 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
     }
 
     public void setDebut(LocalTime d){this.debut = d ; }
+
+    public void rendreoccupé(){
+        libre = false ;
+    }
+
+    public void setlibre(){
+        libre = true ;
+    }
 
     public LocalTime getFin()
     {return this.fin ;  }
@@ -84,30 +109,40 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
        }
     }
 
-    public Creneau decomposer_cr(){
+    public boolean decomposer(Planning plan){
         if (tache != null){
             if ( duree.minus(tache.getDurée()).compareTo(dureemin) >= 0 ){
                  //On fait la décompostion du créneau
                 duree = tache.getDurée() ;
                 fin = debut.plus(duree) ;
-                Creneau newcren = new Creneau(fin , fin.plus(duree.minus(tache.getDurée())) , dureemin) ;
-                return  newcren ;
+                Creneau newcren = new Creneau(fin , fin.plus(duree.minus(tache.getDurée())) , dureemin , datejournée) ;
+                Journée j = plan.Rechjournee(datejournée) ;
+                j.ajouterCreneau(newcren);
+                return  true ;
             }
             else{
                 System.out.println("decomposition impossible du créneau\n");
-                return null ;
+                return false  ;
             }
         }
-        else return null ;
+        else {
+            System.out.println("La tache est null");
+            return false ;
+        }
     }
 
-    public boolean decomposer(){
-        if (this.decomposer_cr() != null) return true ;
-        else return false ;
+    public void setJournée(LocalDate journée) {
+        this.datejournée = journée;
     }
+
+    public Creneau copie(){
+        Creneau c = new Creneau(debut , fin , dureemin) ;
+        return c ;
+    }
+
 
     public boolean crenLibre(){
-        if (bloque=true) return false ;
+        if (libre=true) return false ;
         else return true ;
     }
 

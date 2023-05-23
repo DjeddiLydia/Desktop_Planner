@@ -23,7 +23,7 @@ public class Journée implements Comparable<Journée> {
         iterator1 =  creneaus.iterator() ;
     }
 
-    public void AjouterCreneau(Creneau c) {
+    public void ajouterCreneau(Creneau c) {
 
             this.creneaus.add(c);
     }
@@ -55,5 +55,13 @@ public class Journée implements Comparable<Journée> {
     @Override
     public int compareTo(Journée o) {
         return date.compareTo(o.getDate());
+    }
+
+    public TreeSet<Creneau> listCreneauxLibres(){
+        TreeSet<Creneau> crenlibres = new TreeSet<>() ;
+        for (Creneau c : creneaus){
+             if (c.crenLibre()) crenlibres.add(c) ;
+        }
+        return  crenlibres ;
     }
 }
