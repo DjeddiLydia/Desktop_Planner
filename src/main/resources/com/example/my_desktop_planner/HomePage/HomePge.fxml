@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane prefHeight="548.0" prefWidth="1021.0" stylesheets="@Hp.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.HomePageContro">
+   <children>
+      <BorderPane layoutX="-6.0" layoutY="-7.0" prefHeight="611.0" prefWidth="1027.0">
+         <right>
+            <Pane prefHeight="611.0" prefWidth="559.0" BorderPane.alignment="CENTER">
+               <children>
+                  <ScrollPane fx:id="scrollPane" layoutX="25.0" layoutY="37.0" prefHeight="443.0" prefWidth="272.0">
+                    <content>
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="273.0" />
+                    </content>
+                  </ScrollPane>
+               </children></Pane>
+         </right>
+         <center>
+            <AnchorPane fx:id="anchorPane" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <DatePicker fx:id="datePicker" layoutX="57.0" layoutY="120.0" />
+               </children></AnchorPane>
+         </center>
+         <left>
+            <AnchorPane prefHeight="611.0" prefWidth="140.0" style="-fx-background-color: #A7D2F7;" BorderPane.alignment="CENTER">
+               <children>
+                  <Button layoutX="17.0" layoutY="64.0" mnemonicParsing="false" text="Ajouter Planning" />
+                  <Button layoutX="19.0" layoutY="123.0" mnemonicParsing="false" text="Ajouter Taches" />
+               </children>
+            </AnchorPane>
+         </left>
+      </BorderPane>
+   </children>
+</AnchorPane>

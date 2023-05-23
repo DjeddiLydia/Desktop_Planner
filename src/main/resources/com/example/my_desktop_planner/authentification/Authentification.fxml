@@ -1,10 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane id="Pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #E6E4F6;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.AuthentificationConto">
    <children>
-      <Pane layoutX="6.0" layoutY="8.0" prefHeight="386.0" prefWidth="320.0" />
+      <Pane id="pane" layoutX="6.0" layoutY="4.0" prefHeight="592.0" prefWidth="388.0" style="-fx-background-color: #FFFFFF;">
+         <children>
+            <ImageView fitHeight="41.0" fitWidth="39.0" layoutX="95.0" layoutY="34.0" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../Images/calendar.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="466.0" fitWidth="493.0" layoutX="-50.0" layoutY="249.0" mouseTransparent="true" opacity="0.49" pickOnBounds="true">
+               <image>
+                  <Image url="@../../../../Images/Group1.png" />
+               </image>
+            </ImageView>
+            <Text id="welcome" fill="#14254e" layoutX="149.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome ! " wrappingWidth="168.9095458984375">
+               <font>
+                  <Font size="32.0" />
+               </font>
+            </Text>
+            <Text id="text" fill="#14254e" layoutX="75.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-family: Helvetica;" text="Pseudo" wrappingWidth="49.951171875">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Text>
+            <TextField id="pseudo" fx:id="pseudo" layoutX="75.0" layoutY="193.0" prefHeight="33.0" prefWidth="245.0" style="-fx-background-color: #F7F6F9; -fx-border-color: #A7D2F7; -fx-border-radius: 10; -fx-background-radius: 10;" />
+            <Button fx:id="login" layoutX="75.0" layoutY="343.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="245.0" style="-fx-background-color: #EDEEF9; -fx-background-radius: 5; -fx-text-fill: #00000F;" text="Login" />
+            <Button fx:id="signup" layoutX="74.0" layoutY="286.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="245.0" style="-fx-background-color: #845EF1; -fx-background-radius: 5;" text="Sign up" />
+            <Text fx:id="error1" fill="#ff6969" layoutX="76.0" layoutY="242.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Utilisateur déja existant !" visible="false" />
+         </children></Pane>
    </children>
 </Pane>

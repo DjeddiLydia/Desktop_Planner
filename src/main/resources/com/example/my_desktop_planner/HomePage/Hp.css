@@ -1,0 +1,25 @@
+.date-picker {
+    -fx-pref-width: 200px;
+}
+
+.date-picker .text-field {
+    -fx-background-color: lightgray;
+}
+
+.date-picker .arrow-button {
+    -fx-background-color: #ffcc00;
+    -fx-shape: "M0,0 L10,5 L0,10 Z";
+}
+
+.date-picker .arrow-button .arrow {
+    -fx-background-color: white;
+}
+
+.date-picker-popup > .content {
+    -fx-background-color: lightblue;
+}
+
+.calendar-cell {
+    -fx-background-color: lightgray;
+    -fx-border-color: gray;
+}

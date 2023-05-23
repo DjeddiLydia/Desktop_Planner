@@ -6,11 +6,11 @@ public class SerUtilisateur implements Serializable {
 
 
     private String pseudo ;
-    private String password ;
 
-    public SerUtilisateur(String pseu , String pass)
+
+    public SerUtilisateur(String pseu )
     { this.pseudo=pseu ;
-    this.password=pass;}
+  }
 
 
 
@@ -22,11 +22,5 @@ public class SerUtilisateur implements Serializable {
         this.pseudo = pseudo;
     }
 
-    public String getPassword() {
-        return password;
-    }
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

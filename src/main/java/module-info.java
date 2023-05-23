@@ -9,4 +9,6 @@ module com.example.my_desktop_planner {
     opens com.example.my_desktop_planner.Taches_Prj to javafx.fxml;
     exports com.example.my_desktop_planner.Gestion;
     opens com.example.my_desktop_planner.Gestion to javafx.fxml;
+    opens com.example.my_desktop_planner.Contollers to  javafx.fxml ;
+  exports com.example.my_desktop_planner.Contollers to javafx.fxml ;
 }

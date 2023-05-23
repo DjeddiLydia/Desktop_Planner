@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.AjoutCreneau">
+   <children>
+      <DatePicker layoutX="195.0" layoutY="120.0" />
+      <Text layoutX="37.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner une journée :" />
+      <RadioButton layoutX="37.0" layoutY="63.0" mnemonicParsing="false" text="Ajouter pour tout les jours du planning " />
+      <RadioButton layoutX="313.0" layoutY="65.0" mnemonicParsing="false" text="Ajouter pour une journée seulement" />
+      <Spinner fx:id="spin1" layoutX="37.0" layoutY="203.0" prefHeight="25.0" prefWidth="67.0" />
+      <Spinner fx:id="spin2" layoutX="119.0" layoutY="203.0" prefHeight="25.0" prefWidth="67.0" />
+      <Text layoutX="36.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure début" />
+      <Spinner fx:id="spin3" layoutX="37.0" layoutY="291.0" prefHeight="25.0" prefWidth="67.0" />
+      <Spinner fx:id="spin4" layoutX="119.0" layoutY="291.0" prefHeight="25.0" prefWidth="67.0" />
+      <Text layoutX="38.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure fin" />
+   </children>
+</AnchorPane>

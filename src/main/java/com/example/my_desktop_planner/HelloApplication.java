@@ -40,19 +40,19 @@ public class HelloApplication extends Application {
 
         //App app = new App() ;
 
-        App app = App.loadFromFile("App");
+       // App app = App.loadFromFile("App");
         // System.out.println("utilisateur ajouté   " + app.signUp("rosa" ,"12sd3") ) ;
         //System.out.println("utilisateur ajouté   " + app.signUp("kjsdbkjb" ,"123") ) ;
         //System.out.println("utilisateur ajouté   " + app.signUp("kjb" ,"123") ) ;
-        for (SerUtilisateur u : app.getUsers())
+       /* for (SerUtilisateur u : app.getUsers())
         {System.out.println("Pseudo " + u.getPseudo()); }
 
-        app.saveToFile("App");
+        app.saveToFile("App");*/
 
 
 
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Authentification.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("authentification/Authentification.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
         stage.show();

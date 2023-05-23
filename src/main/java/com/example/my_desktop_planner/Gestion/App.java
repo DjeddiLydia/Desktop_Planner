@@ -8,17 +8,17 @@ import java.util.Set;
 
 public class App implements Serializable {
 
-    private Set<SerUtilisateur> users;
+    private Set<Utilisateur> users;
 
     public App() {
         users = new HashSet<>();
     }
 
-    public Set<SerUtilisateur> getUsers() {
+    public Set<Utilisateur> getUsers() {
         return users;
     }
 
-    public boolean addUser(SerUtilisateur newUser) {
+    public boolean addUser(Utilisateur newUser) {
 
         if (this.containsUser(newUser.getPseudo())) return false;
 
@@ -29,7 +29,7 @@ public class App implements Serializable {
     }
 
     public boolean containsUser(String pseudo) {
-        for (SerUtilisateur user : users) {
+        for (Utilisateur user : users) {
             if (user.getPseudo().equals(pseudo)) {
                 return true;
             }
@@ -63,18 +63,17 @@ public class App implements Serializable {
         return app;
     }
 
-    public SerUtilisateur signUp(String pseudo, String password) {
-        SerUtilisateur user = new SerUtilisateur(pseudo, password);
+    public Utilisateur signUp(String pseudo) {
+        Utilisateur user = new Utilisateur(pseudo);
         boolean b = this.addUser(user) ;
         if (b==true)return user ;
         else return null ;
     }
 
-    public SerUtilisateur logIn(String pseudo, String password) {
-        for (SerUtilisateur user : users) {
+    public Utilisateur logIn(String pseudo) {
+        for (Utilisateur user : users) {
             if (user.getPseudo().equals(pseudo)) {
-                if (user.getPassword()==password) return user ;
-                else {return null ; }
+               return user ;
             }
         }
      return null ;
