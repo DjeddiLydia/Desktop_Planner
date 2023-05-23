@@ -13,6 +13,13 @@ public abstract class Tache  {
     private LocalTime heurelimite ;
     private Priorité priorité ;
 
+    public Tache(String n , LocalDate d , LocalTime t , Priorité p){
+        nom = n ;
+        dateLimite = d ;
+        heurelimite = t ;
+        priorité = p ;
+    }
+
     public Priorité getPriorité() {
         return priorité;
     }

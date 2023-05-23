@@ -117,6 +117,7 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
                 fin = debut.plus(duree) ;
                 Creneau newcren = new Creneau(fin , fin.plus(duree.minus(tache.getDurée())) , dureemin , datejournée) ;
                 Journée j = plan.Rechjournee(datejournée) ;
+                //Traiter le cas d'ajout d'un créneau libre
                 j.ajouterCreneau(newcren);
                 return  true ;
             }

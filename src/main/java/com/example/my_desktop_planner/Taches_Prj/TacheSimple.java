@@ -5,7 +5,15 @@ import com.example.my_desktop_planner.Planification.Creneau;
 import com.example.my_desktop_planner.Planification.Journée;
 import com.example.my_desktop_planner.Planification.Planning;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class TacheSimple extends Tache {
+
+    public TacheSimple(String n , LocalDate d , LocalTime t , Priorité p){
+        super(n,d,t,p);
+    }
+
     private int periodicité = 1;
 
     public void ajouterTache(Creneau creneau) {
