@@ -2,12 +2,25 @@ package com.example.my_desktop_planner.Taches_Prj;
 
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Catégorie {
     private String name ;
     private Color couleur ;
-    private List<TacheSimple> taches ;
+    private ArrayList<Tache> taches  = new ArrayList<>() ;
+
+
+    public Catégorie(String n , Color c , ArrayList<Tache> t ){
+        name = n ;
+        couleur = c ;
+        taches = t ;
+    }
+
+    public Catégorie(String n , Color c ){
+        name = n ;
+        couleur = c ;
+    }
 
     public String getName() {
         return name;
@@ -17,13 +30,15 @@ public class Catégorie {
         return couleur;
     }
 
-    public List<TacheSimple> getTasks() {
+    public ArrayList<Tache> getTasks() {
         return taches;
     }
 
-    public void addTask(TacheSimple tache) {
+    public void addTask(Tache tache) {
         taches.add(tache);
     }
+
+
 
 
 

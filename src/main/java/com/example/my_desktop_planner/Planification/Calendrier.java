@@ -13,8 +13,12 @@ public class Calendrier {
         journées = jrs ;
     }
 
+
     public void ajouterPlanning(Planning p ){
         plannings.add(p) ;
+        for (Journée j : p.getJournées() ){
+            journées.add(j) ;
+        }
     } //A compléter ( il reste à parcourir les journées ....)
 
     public TreeSet<Journée> getJournées(){

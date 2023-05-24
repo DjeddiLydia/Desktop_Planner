@@ -32,6 +32,10 @@ public class Planning {
     public LocalDate getDebut(){return this.debut ; }
     public LocalDate getFin(){return this.fin ; }
 
+    public TreeSet<Journée> getJournées() {
+        return journées;
+    }
+
     public void setCreneauxLibres() {
         this.creneauxLibres = this.listCreneauxLibres() ;
     }
