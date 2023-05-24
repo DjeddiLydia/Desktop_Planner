@@ -60,7 +60,10 @@ public class TacheDecomposable extends Tache implements Decomposable {
             }
             return true ;
         }
-        else return false ;
+        else {
+            System.out.println("");
+            return false ;
+        }
        /* int i = 1 ; //Numéro de la sous tache
         Iterator<Creneau> iterator = plan.getCreneauxLibres().iterator() ;
         Creneau cr ;
@@ -88,6 +91,7 @@ public class TacheDecomposable extends Tache implements Decomposable {
         while (getDurée().compareTo(Duration.ZERO) > 0 && iterator.hasNext()) {
             cr = iterator.next() ;
             if (!getDateLimite().isAfter(cr.getDatejournée())) {
+
                 gérerSousTache(i, cr);
                 creneaus.add(cr) ;
                 i++;

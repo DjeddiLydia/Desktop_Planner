@@ -4,6 +4,7 @@ import com.example.my_desktop_planner.Planification.Calendrier;
 import com.example.my_desktop_planner.Planification.Creneau;
 import com.example.my_desktop_planner.Planification.Journée;
 import com.example.my_desktop_planner.Planification.Planning;
+import com.example.my_desktop_planner.Taches_Prj.Catégorie;
 import com.example.my_desktop_planner.Taches_Prj.Tache;
 import com.example.my_desktop_planner.Taches_Prj.TacheDecomposable;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
@@ -21,6 +22,8 @@ public class Utilisateur {
     private Planning planning  ;
 
     private ArrayList<Tache >  taches = new ArrayList<>();
+
+    private TreeSet<Catégorie> catégories = new TreeSet<>() ;
 
     private Journée selectedDay ; //La journée sélectionnée par l'utilisateur
 
@@ -109,7 +112,7 @@ public class Utilisateur {
 
 
     //Trier le tableau des taches selon la priorité puis la date deadline puis l'heure du deadline
-    public void trierTaches(){
+    public static void trierTaches(ArrayList<Tache> taches ){
         Collections.sort(taches , Comparator.comparing(Tache :: getDateLimite).thenComparing(Tache :: getHeurelimite).thenComparing(Tache :: getPriorité));
     }
 
@@ -131,7 +134,9 @@ public class Utilisateur {
             }
             return true ;
         }
-        else return false ;
+        else {
+            return false ;
+        }
     }
 
     public void setTaches(ArrayList<Tache > t) {
@@ -147,6 +152,14 @@ public class Utilisateur {
 
     public void ajoutTache(Tache t){
         taches.add(t) ;
+    }
+
+    public void ajouterCatégorie(Catégorie g){
+        catégories.add(g) ;
+    }
+
+    public void classerTacheDansCatég(Tache t , Catégorie g ){
+        g.addTask(t);
     }
 
 

@@ -61,7 +61,7 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
     public void setDebut(LocalTime d){this.debut = d ; }
 
     public void rendreoccupé(){
-        libre = false ;
+         libre = false ;
     }
 
     public void setlibre(){
@@ -102,6 +102,7 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
 
     public boolean ajoutTache(Tache t){
        if ( t.getDurée().compareTo(duree)<=0) {
+
            tache = t ;
            return true ;
        }
@@ -146,7 +147,7 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
 
 
     public boolean crenLibre(){
-        if (libre=true) return true ;
+        if (libre==true) return true ;
         else return false ;
     }
 
