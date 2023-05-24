@@ -8,19 +8,22 @@ import com.example.my_desktop_planner.Planification.Planning;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.TreeSet;
 
 public class TacheDecomposable extends Tache implements Decomposable {
 
-    private TreeSet<TacheSimple> tachesSimples  ;
+    private ArrayList<TacheSimple> tachesSimples  ;
 
 
     public TacheDecomposable(String n , LocalDate d , LocalTime t , Priorité p){
         super(n,d,t,p);
     }
 
+    public TacheDecomposable(String n ,Duration dr , LocalDate d , LocalTime t , Priorité p){
+        super(n,dr,d,t,p);
+    }
     @Override
     public boolean planifier(Planning plan ) {
         for (Creneau c : plan.getCreneauxLibres() ){
@@ -45,14 +48,20 @@ public class TacheDecomposable extends Tache implements Decomposable {
         setDurée(getDurée().minus(t.getDurée()));
         tachesSimples.add(t) ;
         c.ajoutTache(t) ;
-        c.rendreoccupé();
-
-
     }
 
     @Override
     public boolean decomposer(Planning plan) {
-        int i = 1 ; //Numéro de la sous tache
+        TreeSet<Creneau> creneaus =  proposerDecomposition(plan);
+        if (creneaus!=null){
+            for (Creneau c : creneaus){
+                c.rendreoccupé();
+                plan.getCreneauxLibres().remove(c) ;
+            }
+            return true ;
+        }
+        else return false ;
+       /* int i = 1 ; //Numéro de la sous tache
         Iterator<Creneau> iterator = plan.getCreneauxLibres().iterator() ;
         Creneau cr ;
         while (getDurée().compareTo(Duration.ZERO) > 0 && iterator.hasNext()) {
@@ -66,6 +75,38 @@ public class TacheDecomposable extends Tache implements Decomposable {
             else return false ;
         }
         if (getDurée().compareTo(Duration.ZERO) > 0) return false ;
-        else return true;
+        else return true;*/
     }
+
+
+    public TreeSet<Creneau> proposerDecomposition(Planning plan){
+        int i = 1 ; //Numéro de la sous tache
+        TreeSet<Creneau> creneaus = new TreeSet<>() ;
+        Iterator<Creneau> iterator = plan.getCreneauxLibres().iterator() ;
+        Creneau cr ;
+        Duration dureeinitiale = getDurée() ;
+        while (getDurée().compareTo(Duration.ZERO) > 0 && iterator.hasNext()) {
+            cr = iterator.next() ;
+            if (!getDateLimite().isAfter(cr.getDatejournée())) {
+                gérerSousTache(i, cr);
+                creneaus.add(cr) ;
+                i++;
+            }
+            else{
+                setDurée(dureeinitiale);
+                return null ;
+            }
+        }
+        if (getDurée().compareTo(Duration.ZERO) > 0) {
+            setDurée(dureeinitiale);
+            return null ;
+        }
+        else {
+            setDurée(dureeinitiale);
+            return creneaus;
+        }
+    }
+
+
+
 }

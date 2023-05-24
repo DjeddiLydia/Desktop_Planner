@@ -62,14 +62,14 @@ public class HelloApplication extends Application {
 
 
 
-        /*FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("authentification/Authentification.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("authentification/Authentification.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hello!");
         stage.setScene(scene);
-        stage.show();*/
+        stage.show();
 
 
-        Utilisateur user1 = new Utilisateur("Rosa"  ) ;
+       /* Utilisateur user1 = new Utilisateur("Rosa"  ) ;
         ArrayList<Tache> taches = new ArrayList<>();
         // Création de tâches
         TacheSimple tache1 = new TacheSimple();
@@ -102,7 +102,7 @@ public class HelloApplication extends Application {
 
         user1.trierTaches();
 
-        user1.affichTaches();
+        user1.affichTaches();*/
 
 
     }

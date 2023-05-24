@@ -20,6 +20,14 @@ public abstract class Tache  {
         priorité = p ;
     }
 
+    public Tache(String n ,Duration dr ,  LocalDate d , LocalTime t , Priorité p  ){
+        nom = n ;
+        dateLimite = d ;
+        heurelimite = t ;
+        priorité = p ;
+        durée = dr ;
+    }
+
     public Priorité getPriorité() {
         return priorité;
     }

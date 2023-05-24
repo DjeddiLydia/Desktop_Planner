@@ -5,6 +5,7 @@ import com.example.my_desktop_planner.Planification.Creneau;
 import com.example.my_desktop_planner.Planification.Journée;
 import com.example.my_desktop_planner.Planification.Planning;
 import com.example.my_desktop_planner.Taches_Prj.Tache;
+import com.example.my_desktop_planner.Taches_Prj.TacheDecomposable;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 
 import java.time.LocalDate;
@@ -19,7 +20,7 @@ public class Utilisateur {
 
     private Planning planning  ;
 
-    private ArrayList<Tache >  taches ;
+    private ArrayList<Tache >  taches = new ArrayList<>();
 
     private Journée selectedDay ; //La journée sélectionnée par l'utilisateur
 
@@ -91,6 +92,7 @@ public class Utilisateur {
                     Journée jr = new Journée(date);
                     jr.ajouterCreneau(c1);
                     planning.ajouterjournée(jr);
+                    planning.getCreneauxLibres().add(c1) ;
                 }
                 date = date.plusDays(1);
             }
@@ -98,11 +100,13 @@ public class Utilisateur {
     }
 
     public void ajoutercreneau(LocalDate date, Creneau c){
+
         if (planning.Rechjournee(date) != null) planning.Rechjournee(date).ajouterCreneau(c);
         else {
             Journée jr = new Journée(date);
             jr.ajouterCreneau(c);
             planning.ajouterjournée(jr);
+            planning.getCreneauxLibres().add(c) ;
         }
     }
 
@@ -113,13 +117,24 @@ public class Utilisateur {
     }
 
 
-    public void PlanifAuto(){
+    public boolean PlanifAuto(){
         int i=0 ;
-        while(i!= taches.size()){
-            Tache t = taches.get(i) ;
-            //Rechercher un créneau libre correspondant
-
+        if (!taches.isEmpty()) {
+            while (i != taches.size()) {
+                Tache t = taches.get(i);
+                if (t instanceof TacheSimple){
+                     if (t.planifier(planning)) ;
+                     else return false ;
+                }
+                else if (t instanceof TacheDecomposable){
+                    if (t.planifier(planning)) ;
+                    else return false ;
+                }
+                i++ ;
+            }
+            return true ;
         }
+        else return false ;
     }
 
     public void setTaches(ArrayList<Tache > t) {
@@ -130,6 +145,11 @@ public class Utilisateur {
         for(Tache t : taches ){
             System.out.println(t.getNom());
         }
+    }
+
+
+    public void ajoutTache(Tache t){
+        taches.add(t) ;
     }
 
 
