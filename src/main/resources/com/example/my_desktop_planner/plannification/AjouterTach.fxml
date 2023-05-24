@@ -1,14 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.my_desktop_planner.Contollers.AjouterTache"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="461.0" prefWidth="383.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.AjouterTache">
+   <children>
+      <Text layoutX="26.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter une Tache : ">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Text>
+      <TextField fx:id="nom" layoutX="177.0" layoutY="77.0" prefHeight="25.0" prefWidth="127.0" />
+      <Text layoutX="67.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de la tache : " />
+      <Text layoutX="68.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Durée : " />
+      <MenuButton fx:id="H" layoutX="174.0" layoutY="136.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="H" />
+      <MenuButton fx:id="MIN" layoutX="263.0" layoutY="136.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="min" />
+      <Text layoutX="68.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priorité : " />
+      <SplitMenuButton fx:id="priorité" layoutX="177.0" layoutY="205.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="127.0" text="High" />
+      <Text layoutX="68.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline : " />
+      <DatePicker fx:id="deadline" layoutX="176.0" layoutY="268.0" prefHeight="25.0" prefWidth="127.0" />
+      <RadioButton fx:id="simple" layoutX="76.0" layoutY="338.0" mnemonicParsing="false" text="Simple" />
+      <RadioButton fx:id="decomp" layoutX="214.0" layoutY="338.0" mnemonicParsing="false" text="Décomposable" />
+      <Button fx:id="Ajouter" layoutX="289.0" layoutY="407.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Ajouter" />
+      <Text fx:id="ErrorNom" fill="#ff2424" layoutX="178.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer le nom de la tache" visible="false" wrappingWidth="184.05010986328125">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Text fx:id="ErrorDurée" fill="#ff2424" layoutX="177.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer une durée correcte" visible="false" wrappingWidth="184.05010986328125">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Text fx:id="ErrorDate" fill="#ff2424" layoutX="178.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez entrer une deadline" visible="false" wrappingWidth="184.05010986328125">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+      <Text fx:id="ErrorType" fill="#ff2424" layoutX="77.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Veuillez selectionner l'un des deux options" visible="false" wrappingWidth="196.05010986328125">
+         <font>
+            <Font size="10.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>

@@ -1,8 +1,11 @@
 package com.example.my_desktop_planner.Contollers;
 
+import com.example.my_desktop_planner.Box;
 import com.example.my_desktop_planner.Gestion.App;
 import com.example.my_desktop_planner.Gestion.SerUtilisateur;
 import com.example.my_desktop_planner.Gestion.Utilisateur;
+import com.example.my_desktop_planner.Planification.Creneau;
+import com.example.my_desktop_planner.Planification.Journée;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +16,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.skin.DatePickerSkin;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -20,6 +24,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 
 public class HomePageContro implements Initializable {
@@ -49,24 +54,26 @@ public class HomePageContro implements Initializable {
         //DatePicker datePicker = new DatePicker(LocalDate.now());
 
 
-        DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
+        /*DatePickerSkin datePickerSkin = new DatePickerSkin(datePicker);
 
         Node popupContent = datePickerSkin.getPopupContent();
         anchorPane.getChildren().add(popupContent) ;
         popupContent.setLayoutX(20);
-        popupContent.setLayoutY(100) ;
+        popupContent.setLayoutY(100) ;*/
+
+        Creneau creneau1 = new Creneau(LocalTime.of(9, 0), LocalTime.of(10, 0));
+        Creneau creneau2 = new Creneau(LocalTime.of(14, 30), LocalTime.of(16, 0));
+        Creneau creneau3 = new Creneau(LocalTime.of(18, 0), LocalTime.of(19, 30));
+        Creneau creneau4 = new Creneau(LocalTime.of(20, 0), LocalTime.of(21, 0));
+
+
 
         VBox innerBoxContainer = new VBox();
-        innerBoxContainer.setSpacing(10);
+        innerBoxContainer.setSpacing(40);
         innerBoxContainer.setPadding(new Insets(10));
 
         // Create inner boxes
-        for (int i = 1; i <= 10; i++) {
-            Pane innerBox = new Pane();
-            innerBox.setPrefSize(300, 50);
-            innerBox.setStyle("-fx-background-color: #DDDDDD;");
-            innerBoxContainer.getChildren().add(innerBox);
-        }
+
 
         // Set VBox as the content of ScrollPane
         scrollPane.setContent(innerBoxContainer);
@@ -80,6 +87,29 @@ public class HomePageContro implements Initializable {
             }
 
 
+
+
+        });
+
+        datePicker.setOnKeyPressed(keyEvent -> {
+            if (keyEvent.getCode() == KeyCode.ENTER) {
+
+
+                Journée j = utilisateur.getCalendrier().Rechjournee(datePicker.getValue());
+
+                if (j != null) {
+
+                    for (Creneau c : j.getCreneaus()) {
+                        Box innerBox = new Box(c);
+                        innerBox.setPrefSize(300, 50);
+                        innerBox.setStyle("-fx-background-color: #DDDDDD;");
+                        innerBox.setStyle("-fx-border-color:  #845EF1;");
+                        innerBoxContainer.getChildren().add(innerBox);
+
+
+                    }
+                }
+            }
 
 
         });

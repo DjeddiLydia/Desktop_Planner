@@ -2,6 +2,7 @@ package com.example.my_desktop_planner.Planification;
 
 import java.time.LocalDate;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -12,7 +13,7 @@ public class Planning {
 
     private TreeSet<Creneau> creneauxLibres ;
 
-    private TreeSet<Journée>journées ;
+    private TreeSet<Journée>journées= new TreeSet<>() ;
 
 
     public Planning ( LocalDate d , LocalDate f , TreeSet<Journée> j){
@@ -27,6 +28,9 @@ public class Planning {
     }
 
     public Planning(){}
+
+    public LocalDate getDebut(){return this.debut ; }
+    public LocalDate getFin(){return this.fin ; }
 
     public void setCreneauxLibres() {
         this.creneauxLibres = this.listCreneauxLibres() ;
@@ -57,11 +61,14 @@ public class Planning {
 
     public Journée Rechjournee(LocalDate d ){
         Iterator<Journée> iterator = journées.iterator() ;
-        Journée jr =  iterator.next();
-        while((jr.getDate() != d) && iterator.hasNext()){
-            jr =  iterator.next();
+        if (iterator.hasNext()) {
+            Journée jr = iterator.next();
+            while ((jr.getDate() != d) && iterator.hasNext()) {
+                jr = iterator.next();
+            }
+            if (jr.getDate() == d) return jr;
+            else return null;
         }
-        if(jr.getDate() == d) return  jr ;
         else return null ;
     }
 
@@ -70,6 +77,11 @@ public class Planning {
             System.out.println(j.getDate());
         }
     }*/
+
+    public Journée rechercheJour (LocalDate date){
+        for (Journée j : journées) {
+            if (j.getDate().equals(date) ) return j ; }
+    return null ; }
 
     public void ajouterjournée(Journée j){
         journées.add(j) ;

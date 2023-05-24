@@ -74,6 +74,8 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
     public void setFin(LocalTime f)
     {this.fin = f ; }
 
+    public Tache getTache() {return this.tache ; }
+
     @Override
 
     public boolean equals(Object o ){
@@ -144,8 +146,8 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
 
 
     public boolean crenLibre(){
-        if (libre=true) return false ;
-        else return true ;
+        if (libre=true) return true ;
+        else return false ;
     }
 
 

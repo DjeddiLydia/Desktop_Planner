@@ -7,7 +7,7 @@ import java.util.*;
 public class Journée implements Comparable<Journée> {
 
     private LocalDate date;
-    private TreeSet<Creneau> creneaus;
+    private TreeSet<Creneau> creneaus = new TreeSet<>();
     private static final Duration dureeMax = Duration.ofMinutes(1440);
     private Duration dureePrise;
 
@@ -23,6 +23,8 @@ public class Journée implements Comparable<Journée> {
 
             this.creneaus.add(c);
     }
+
+    public TreeSet<Creneau> getCreneaus() {return this.creneaus ; }
 
     @Override
     public boolean equals(Object o ){
@@ -55,4 +57,7 @@ public class Journée implements Comparable<Journée> {
         }
         return  crenlibres ;
     }
+
+
+
 }

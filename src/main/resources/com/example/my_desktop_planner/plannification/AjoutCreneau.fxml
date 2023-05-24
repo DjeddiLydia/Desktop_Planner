@@ -8,21 +8,20 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="645.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.AjoutCreneau">
    <children>
       <DatePicker fx:id="date3" layoutX="33.0" layoutY="338.0" />
       <Text layoutX="43.0" layoutY="321.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner une journée :" />
       <RadioButton fx:id="radio1" layoutX="25.0" layoutY="57.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="309.0" text="Ajouter pour tout les jours d'une periode du Planning" />
       <RadioButton fx:id="radio2" layoutX="26.0" layoutY="270.0" mnemonicParsing="false" text="Ajouter pour une journée seulement" />
-      <Text layoutX="397.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure début" />
-      <Text layoutX="406.0" layoutY="184.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure fin" />
+      <Text layoutX="401.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure début" />
+      <Text layoutX="410.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectionner l'heure fin" />
       <DatePicker fx:id="date1" layoutX="33.0" layoutY="121.0" />
       <DatePicker fx:id="date2" layoutX="33.0" layoutY="198.0" />
       <Text layoutX="37.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectioner une date début" />
       <Text layoutX="37.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Selectioner une date fin" />
-      <Button fx:id="Valider" layoutX="535.0" layoutY="350.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="86.0" text="Valider" />
-      <Text layoutX="220.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter crénaux ">
+      <Button fx:id="Valider" layoutX="419.0" layoutY="350.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="69.0" text="Valider" />
+      <Text layoutX="220.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter créneaux ">
          <font>
             <Font size="24.0" />
          </font>
@@ -37,9 +36,13 @@
             <Font size="9.0" />
          </font>
       </Text>
-      <SplitMenuButton fx:id="H1" layoutX="405.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="H" />
-      <SplitMenuButton fx:id="MIN1" layoutX="484.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="min" />
-      <SplitMenuButton fx:id="H2" layoutX="407.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="H" />
-      <SplitMenuButton fx:id="MIN2" layoutX="486.0" layoutY="210.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="min" />
+      <SplitMenuButton fx:id="H1" layoutX="409.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="H" />
+      <SplitMenuButton fx:id="MIN1" layoutX="488.0" layoutY="87.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="min" />
+      <SplitMenuButton fx:id="H2" layoutX="411.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="H" />
+      <SplitMenuButton fx:id="MIN2" layoutX="490.0" layoutY="169.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="min" />
+      <Button fx:id="VoirPlanning" layoutX="523.0" layoutY="350.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" text="Voir Planning" />
+      <Text layoutX="411.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Durée min : " />
+      <SplitMenuButton fx:id="H3" layoutX="411.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="H" />
+      <SplitMenuButton fx:id="MIN3" layoutX="488.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="69.0" text="min" />
    </children>
 </AnchorPane>

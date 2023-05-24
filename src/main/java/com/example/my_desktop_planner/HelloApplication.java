@@ -70,6 +70,8 @@ public class HelloApplication extends Application {
 
 
        /* Utilisateur user1 = new Utilisateur("Rosa"  ) ;
+/*
+        Utilisateur user1 = new Utilisateur("Rosa"  ) ;
         ArrayList<Tache> taches = new ArrayList<>();
         // Création de tâches
         TacheSimple tache1 = new TacheSimple();
