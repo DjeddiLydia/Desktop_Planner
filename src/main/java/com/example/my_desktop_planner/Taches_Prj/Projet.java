@@ -2,7 +2,9 @@ package com.example.my_desktop_planner.Taches_Prj;
 
 import java.util.ArrayList;
 
-public class Projet {
+import java.io.Serializable;
+
+public class Projet implements Serializable {
 
     private String nom ;
     private String description ;

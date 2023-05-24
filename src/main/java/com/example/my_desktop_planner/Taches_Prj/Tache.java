@@ -2,11 +2,12 @@ package com.example.my_desktop_planner.Taches_Prj;
 
 import com.example.my_desktop_planner.Planification.Planning;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public abstract class Tache  {
+public abstract class Tache implements Serializable {
     private String nom ;
     private Duration durée ;
     private LocalDate dateLimite  ;
@@ -29,6 +30,15 @@ public abstract class Tache  {
         priorité = p ;
         durée = dr ;
         etat = e ;
+    }
+
+
+    public Tache(String n ,Duration dr ,  LocalDate d , LocalTime t , Priorité p ){
+        nom = n ;
+        dateLimite = d ;
+        heurelimite = t ;
+        priorité = p ;
+        durée = dr ;
     }
 
     public EtatRealisation getEtat() {
@@ -81,17 +91,7 @@ public abstract class Tache  {
         etat=e ;
     }
 
-    public static  Priorité StringToPropriete(String str){
-        if (str == "High"){
-            return Priorité.High ;
-        }
-        else if (str == "Medium"){
-            return Priorité.Medium ;
-             } else if (str == "Low") {
-            return Priorité.Low ;
-        }
-        else return null ;
-    }
+
 
     public static EtatRealisation StringToEtat(String str){
 
@@ -111,5 +111,18 @@ public abstract class Tache  {
             return EtatRealisation.Delayed ;
         }
         return null ;
+    }
+
+
+    public static  Priorité StringToPropriete(String str){
+        if (str == "High"){
+            return Priorité.High ;
+        }
+        else if (str == "Medium"){
+            return Priorité.Medium ;
+        } else if (str == "Low") {
+            return Priorité.Low ;
+        }
+        else return null ;
     }
 }

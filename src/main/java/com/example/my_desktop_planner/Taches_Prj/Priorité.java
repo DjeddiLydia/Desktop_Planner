@@ -1,6 +1,7 @@
 package com.example.my_desktop_planner.Taches_Prj;
 
-public enum Priorité {
+import java.io.Serializable;
 
+public enum Priorité  implements Serializable {
     High, Medium , Low
 }

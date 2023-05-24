@@ -1,10 +1,11 @@
 package com.example.my_desktop_planner.Planification;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.util.*;
 
-public class Journée implements Comparable<Journée> {
+public class Journée implements Comparable<Journée>  , Serializable {
 
     private LocalDate date;
     private TreeSet<Creneau> creneaus = new TreeSet<>();

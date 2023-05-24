@@ -5,6 +5,7 @@ import com.example.my_desktop_planner.Planification.Decomposable;
 import com.example.my_desktop_planner.Planification.Journée;
 import com.example.my_desktop_planner.Planification.Planning;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -12,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.TreeSet;
 
-public class TacheDecomposable extends Tache implements Decomposable {
+public class TacheDecomposable extends Tache implements Decomposable , Serializable {
 
     private ArrayList<TacheSimple> tachesSimples  ;
 
@@ -23,6 +24,10 @@ public class TacheDecomposable extends Tache implements Decomposable {
 
     public TacheDecomposable(String n ,Duration dr , LocalDate d , LocalTime t , Priorité p, EtatRealisation e){
         super(n,dr,d,t,p,e);
+    }
+
+    public TacheDecomposable(String n ,Duration dr , LocalDate d , LocalTime t , Priorité p){
+        super(n,dr,d,t,p);
     }
     @Override
     public boolean planifier(Planning plan ) {

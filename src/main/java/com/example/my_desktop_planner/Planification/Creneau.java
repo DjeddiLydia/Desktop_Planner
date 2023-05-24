@@ -3,12 +3,13 @@ package com.example.my_desktop_planner.Planification;
 import com.example.my_desktop_planner.Taches_Prj.Tache;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
 
-public class Creneau implements Comparable <Creneau> , Decomposable{
+public class Creneau implements Comparable <Creneau> , Decomposable , Serializable {
     private boolean libre;
     private LocalDate datejournée ;
     private LocalTime debut;
@@ -61,7 +62,7 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
     public void setDebut(LocalTime d){this.debut = d ; }
 
     public void rendreoccupé(){
-         libre = false ;
+        libre = false ;
     }
 
     public void setlibre(){
@@ -102,9 +103,17 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
 
     public boolean ajoutTache(Tache t){
        if ( t.getDurée().compareTo(duree)<=0) {
-
-           tache = t ;
-           return true ;
+           if (!datejournée.isAfter(t.getDateLimite())) {
+               if ( t.getDateLimite().compareTo(datejournée)==0 && t.getHeurelimite().isBefore(debut.plus(t.getDurée()))) {
+                   return false ;
+               }
+               tache = t;
+               return true;
+           }
+           else {
+               System.out.println("Deadline Dépassé ");
+               return false ;
+           }
        }
        else {
            System.out.println("La durée de la tache est supérieure à la durée du créneau");
