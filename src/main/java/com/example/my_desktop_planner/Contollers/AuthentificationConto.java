@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 public class AuthentificationConto implements Initializable {
 
     @FXML
-    private Button signup;
+    private Button signup , login;
     @FXML
     private TextField pseudo;
 
@@ -35,9 +35,11 @@ public class AuthentificationConto implements Initializable {
     private App app ;
     Stage stage ;
 
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        App app = new App() ;
+       app = App.loadFromFile("App") ;
 
 
 
@@ -73,6 +75,9 @@ public class AuthentificationConto implements Initializable {
 
 
 
+
+
+
         });
 
         signup.setOnMouseClicked(actionEvent -> {
@@ -100,10 +105,39 @@ public class AuthentificationConto implements Initializable {
 
             }
 
+        });
+
+        login.setOnMouseClicked(actionEvent -> {
+
+            if (pseudo.getText() != null) {
 
 
+                utilisateur = app.logIn(pseudo.getText());
+
+                if (utilisateur == null) {
+                    error1.setVisible(true);
+                } else {
+
+
+                    System.out.println(pseudo.getText());
+
+                    try {
+                        switchToHomePage();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+
+
+                }
+
+            }
 
         });
+
+
+
+
+
 
 
     }
@@ -111,7 +145,7 @@ public class AuthentificationConto implements Initializable {
 
     public void switchToHomePage() throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/my_desktop_planner/HomePage/HomePge.fxml"));
-        loader.setControllerFactory(obj-> new HomePageContro(this.utilisateur));
+        loader.setControllerFactory(obj-> new HomePageContro(this.utilisateur , this.app));
         Stage stage = (Stage) signup.getScene().getWindow();
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);

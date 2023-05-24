@@ -35,7 +35,7 @@ public class HomePageContro implements Initializable {
     @FXML
     private ScrollPane scrollPane;
     @FXML
-    private Button ajouterPlanning;
+    private Button ajouterPlanning , AjouterTache , deconnexion , VoirPlanning;
 
     @FXML
     private AnchorPane anchorPane;
@@ -44,9 +44,15 @@ public class HomePageContro implements Initializable {
     private App app ;
 
 
-    public HomePageContro(Utilisateur utilisateur){
+    public HomePageContro(Utilisateur utilisateur , App a){
         this.utilisateur=utilisateur;
+        this.app = a ;
     }
+    public HomePageContro(){
+
+    }
+
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -100,7 +106,7 @@ public class HomePageContro implements Initializable {
                 if (j != null) {
 
                     for (Creneau c : j.getCreneaus()) {
-                        Box innerBox = new Box(c);
+                        Box innerBox = new Box(c , this.utilisateur);
                         innerBox.setPrefSize(300, 50);
                         innerBox.setStyle("-fx-background-color: #DDDDDD;");
                         innerBox.setStyle("-fx-border-color:  #845EF1;");
@@ -113,6 +119,55 @@ public class HomePageContro implements Initializable {
 
 
         });
+
+        AjouterTache.setOnMouseClicked(actionEvent -> {
+
+            try {showAjouterTache(); }
+         catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        });
+
+
+        AjouterTache.setOnMouseClicked(actionEvent -> {
+
+            try {showAjouterTache(); }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        });
+
+        deconnexion.setOnMouseClicked(actionEvent -> {
+
+           this.app.saveToFile("App");
+           try {switchToAuthent(); }
+           catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+
+        });
+
+        VoirPlanning.setOnMouseClicked(actionEvent -> {
+
+            try {showToVoirPlan(); }
+            catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+
+        });
+
+
+
+
+
+
 
 
 
@@ -129,6 +184,36 @@ public class HomePageContro implements Initializable {
         stage.setScene(scene);
         stage.show();
 
+
+    }
+    public void showAjouterTache() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/my_desktop_planner/plannification/AjouterTach.fxml"));
+        loader.setControllerFactory(obj-> new AjouterTache(this.utilisateur));
+
+        Scene scene = new Scene(loader.load());
+        Stage stage = new Stage() ;
+        stage.setScene(scene);
+        stage.show();
+
+
+    }
+
+    public void switchToAuthent() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/my_desktop_planner/authentification/Authentification.fxml"));
+        loader.setControllerFactory(obj-> new AuthentificationConto() );
+        Stage stage = (Stage) deconnexion.getScene().getWindow();
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+
+    }
+
+    public void showToVoirPlan () throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/my_desktop_planner/Planning/Planing.fxml"));
+        loader.setControllerFactory(obj -> new Plannin(this.utilisateur));
+        Stage stage = new Stage() ;
+        Scene scene = new Scene(loader.load());
+        stage.setScene(scene);
+        stage.show();
 
     }
 

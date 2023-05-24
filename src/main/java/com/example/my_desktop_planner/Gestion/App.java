@@ -8,18 +8,17 @@ import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class App implements Serializable {
 
-    private Set<Utilisateur> users;
+    private List<Utilisateur> users ;
 
     public App() {
-        users = new HashSet<>();
+        users = new ArrayList<Utilisateur>();
     }
 
-    public Set<Utilisateur> getUsers() {
+    public  List<Utilisateur> getUsers() {
         return users;
     }
 

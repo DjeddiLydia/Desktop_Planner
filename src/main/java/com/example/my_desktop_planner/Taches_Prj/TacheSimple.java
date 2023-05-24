@@ -5,11 +5,13 @@ import com.example.my_desktop_planner.Planification.Creneau;
 import com.example.my_desktop_planner.Planification.Journée;
 import com.example.my_desktop_planner.Planification.Planning;
 
+import java.io.Serializable;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class TacheSimple extends Tache {
+public class TacheSimple extends Tache implements Serializable {
+
 
     private int periodicité = 0;
 
@@ -26,6 +28,11 @@ public class TacheSimple extends Tache {
         periodicité = prd ;
     }
 
+    public TacheSimple(String n , Duration dr ,LocalDate d , LocalTime t , Priorité p , int prd){
+        super(n,dr,d,t,p);
+        periodicité = prd ;
+    }
+
     public void setPeriodicité(int periodicité) {
         this.periodicité = periodicité;
     }
@@ -37,7 +44,7 @@ public class TacheSimple extends Tache {
     @Override
     public boolean planifier(Planning plan) {
         for (Creneau c : plan.getCreneauxLibres() ){
-           if ( !getDateLimite().isAfter(c.getDatejournée())) {
+           if ( !getDateLimite().isBefore(c.getDatejournée())) {
                if (c.ajoutTache(this)) {
                    c.decomposer(plan);
                    c.rendreoccupé();
@@ -59,6 +66,10 @@ public class TacheSimple extends Tache {
                    }
                    return true;
                }
+           }
+           else {
+               System.out.println("Deadline dépassé");
+               return false ;
            }
         }
         return false ;

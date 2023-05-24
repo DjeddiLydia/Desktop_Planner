@@ -9,11 +9,13 @@ import com.example.my_desktop_planner.Taches_Prj.Tache;
 import com.example.my_desktop_planner.Taches_Prj.TacheDecomposable;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Utilisateur {
+public class Utilisateur implements Serializable {
+
 
     private String pseudo ;
 
@@ -60,7 +62,8 @@ public class Utilisateur {
         calendrier.ajouterPlanning(planning);
     }
 
-    public void Planif_Man(Tache t  , Creneau c){
+    public void Planif_Man(Tache t , Creneau c){
+
               if (c.crenLibre())  {
                   //On va manipuler que les taches simples
                   if (c.ajoutTache(t)) {
@@ -112,7 +115,7 @@ public class Utilisateur {
 
 
     //Trier le tableau des taches selon la priorité puis la date deadline puis l'heure du deadline
-    public static void trierTaches(ArrayList<Tache> taches ){
+    public static void trierTaches(ArrayList<Tache> taches){
         Collections.sort(taches , Comparator.comparing(Tache :: getDateLimite).thenComparing(Tache :: getHeurelimite).thenComparing(Tache :: getPriorité));
     }
 
@@ -124,7 +127,10 @@ public class Utilisateur {
                 Tache t = taches.get(i);
                 if (t instanceof TacheSimple){
                      if (t.planifier(planning)) ;
-                     else return false ;
+                     else {
+                         System.out.println("La tache simple n'a pas pu etre ^planifiée");
+                         return false ;
+                     }
                 }
                 else if (t instanceof TacheDecomposable){
                     if (t.planifier(planning)) ;
@@ -135,6 +141,7 @@ public class Utilisateur {
             return true ;
         }
         else {
+            System.out.println("Liste vide");
             return false ;
         }
     }
@@ -153,6 +160,8 @@ public class Utilisateur {
     public void ajoutTache(Tache t){
         taches.add(t) ;
     }
+
+    public ArrayList<Tache> getTaches(){return this.taches ; }
 
     public void ajouterCatégorie(Catégorie g){
         catégories.add(g) ;

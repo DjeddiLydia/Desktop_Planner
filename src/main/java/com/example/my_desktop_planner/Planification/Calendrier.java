@@ -1,10 +1,11 @@
 package com.example.my_desktop_planner.Planification;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.*;
 
-public class Calendrier {
+public class Calendrier implements Serializable {
 
     private TreeSet<Journée> journées = new TreeSet<>() ;
     private List<Planning> plannings  ;

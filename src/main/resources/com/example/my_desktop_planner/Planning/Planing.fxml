@@ -8,17 +8,14 @@
 
 <AnchorPane prefHeight="546.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.Plannin">
    <children>
-      <ScrollPane fx:id="scroll" layoutX="95.0" layoutY="86.0" prefHeight="404.0" prefWidth="758.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="331.0" prefWidth="607.0" />
-        </content>
-      </ScrollPane>
+      <ScrollPane fx:id="scroll" layoutX="95.0" layoutY="86.0" prefHeight="404.0" prefWidth="758.0" />
       <Text layoutX="21.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Planning:" wrappingWidth="116.07815551757812">
          <font>
             <Font size="26.0" />
          </font>
       </Text>
-      <Button layoutX="153.0" layoutY="16.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="158.0" text="Plannifier tache manuelle" />
-      <Button layoutX="333.0" layoutY="17.0" mnemonicParsing="false" text="Plannification Automatique" />
+      <Button fx:id="PlannificationAuto" layoutX="179.0" layoutY="21.0" mnemonicParsing="false" text="Plannification Automatique" />
+      <Button fx:id="Refresh" layoutX="867.0" layoutY="18.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="RetourHome" layoutX="15.0" layoutY="510.0" mnemonicParsing="false" text="Retour Home" />
    </children>
 </AnchorPane>

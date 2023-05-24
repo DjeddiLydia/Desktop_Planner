@@ -69,6 +69,8 @@ public class HelloApplication extends Application {
         stage.show();
 
 
+
+
        /* Utilisateur user1 = new Utilisateur("Rosa"  ) ;
 /*
         Utilisateur user1 = new Utilisateur("Rosa"  ) ;
@@ -105,6 +107,11 @@ public class HelloApplication extends Application {
         user1.trierTaches();
 
         user1.affichTaches();*/
+
+
+
+
+
 
 
     }
