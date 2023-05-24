@@ -13,6 +13,8 @@ public abstract class Tache  {
     private LocalTime heurelimite ;
     private Priorité priorité ;
 
+    private EtatRealisation etat ;
+
     public Tache(String n , LocalDate d , LocalTime t , Priorité p){
         nom = n ;
         dateLimite = d ;
@@ -20,12 +22,17 @@ public abstract class Tache  {
         priorité = p ;
     }
 
-    public Tache(String n ,Duration dr ,  LocalDate d , LocalTime t , Priorité p  ){
+    public Tache(String n ,Duration dr ,  LocalDate d , LocalTime t , Priorité p , EtatRealisation e){
         nom = n ;
         dateLimite = d ;
         heurelimite = t ;
         priorité = p ;
         durée = dr ;
+        etat = e ;
+    }
+
+    public EtatRealisation getEtat() {
+        return etat;
     }
 
     public Priorité getPriorité() {
@@ -68,5 +75,41 @@ public abstract class Tache  {
 
     public String getNom() {
         return nom ;
+    }
+
+    public void setEtat(EtatRealisation e){
+        etat=e ;
+    }
+
+    public static  Priorité StringToPropriete(String str){
+        if (str == "High"){
+            return Priorité.High ;
+        }
+        else if (str == "Medium"){
+            return Priorité.Medium ;
+             } else if (str == "Low") {
+            return Priorité.Low ;
+        }
+        else return null ;
+    }
+
+    public static EtatRealisation StringToEtat(String str){
+
+        if (str == "NotRealized"){
+            return EtatRealisation.NotRealized ;
+        }
+        if (str == "Completed"){
+            return EtatRealisation.Completed ;
+        }
+        if (str == "InProgress"){
+            return EtatRealisation.InProgress ;
+        }
+        if (str == "Cancelled"){
+            return EtatRealisation.Cancelled ;
+        }
+        if (str == "Delayed"){
+            return EtatRealisation.Delayed ;
+        }
+        return null ;
     }
 }

@@ -11,15 +11,20 @@ import java.time.LocalTime;
 
 public class TacheSimple extends Tache {
 
+    private int periodicité = 0;
+
     public TacheSimple(String n , LocalDate d , LocalTime t , Priorité p){
         super(n,d,t,p);
     }
 
-    public TacheSimple(String n , Duration dr ,LocalDate d , LocalTime t , Priorité p){
-        super(n,dr,d,t,p);
+    public TacheSimple(String n , Duration dr ,LocalDate d , LocalTime t , Priorité p ,EtatRealisation e){
+        super(n,dr,d,t,p,e);
     }
 
-    private int periodicité = 0;
+    public TacheSimple(String n , Duration dr ,LocalDate d , LocalTime t , Priorité p  , EtatRealisation e, int prd){
+        super(n,dr,d,t,p,e);
+        periodicité = prd ;
+    }
 
     public void setPeriodicité(int periodicité) {
         this.periodicité = periodicité;
@@ -38,11 +43,19 @@ public class TacheSimple extends Tache {
                    c.rendreoccupé();
                    plan.getCreneauxLibres().remove(c);
                    if (periodicité != 0) {
-                       //Faire la planification périodique
-                       /*LocalDate date = c.getDatejournée().periodicité ;
-                       while () {
-
-                       }*/
+                       LocalDate date = c.getDatejournée().plusDays(periodicité );
+                       while (!date.isAfter(plan.getFin())) {
+                              if (plan.Rechjournee(date)!=null){
+                                  for (Creneau cr : plan.Rechjournee(date).listCreneauxLibres() ){
+                                      if (cr.ajoutTache(this)) {
+                                          cr.decomposer(plan);
+                                          cr.rendreoccupé();
+                                          plan.getCreneauxLibres().remove(c);
+                                      }
+                                  }
+                              }
+                           date = date.plusDays(periodicité) ;
+                       }
                    }
                    return true;
                }

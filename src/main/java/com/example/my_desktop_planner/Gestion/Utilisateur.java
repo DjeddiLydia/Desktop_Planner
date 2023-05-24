@@ -57,9 +57,7 @@ public class Utilisateur {
         calendrier.ajouterPlanning(planning);
     }
 
-    public void Planif_Man(Tache t , LocalDate d , Creneau c){
-          Journée jr = planning.Rechjournee(d) ;
-          if (jr != null ) {
+    public void Planif_Man(Tache t  , Creneau c){
               if (c.crenLibre())  {
                   //On va manipuler que les taches simples
                   if (c.ajoutTache(t)) {
@@ -68,7 +66,6 @@ public class Utilisateur {
                   }
                   else System.out.println("On peut pas rajouter la tache au créneau");
               }
-          }
     }
 
 
@@ -117,7 +114,7 @@ public class Utilisateur {
     }
 
 
-    public boolean PlanifAuto(){
+    public boolean PlanifAuto( ArrayList<Tache> taches ){
         int i=0 ;
         if (!taches.isEmpty()) {
             while (i != taches.size()) {

@@ -11,7 +11,7 @@ public class Planning {
     private LocalDate debut ;
     private LocalDate fin ;
 
-    private TreeSet<Creneau> creneauxLibres ;
+    private TreeSet<Creneau> creneauxLibres = new TreeSet<>() ;
 
     private TreeSet<Journée>journées= new TreeSet<>() ;
 

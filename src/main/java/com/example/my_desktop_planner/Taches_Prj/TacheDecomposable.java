@@ -21,8 +21,8 @@ public class TacheDecomposable extends Tache implements Decomposable {
         super(n,d,t,p);
     }
 
-    public TacheDecomposable(String n ,Duration dr , LocalDate d , LocalTime t , Priorité p){
-        super(n,dr,d,t,p);
+    public TacheDecomposable(String n ,Duration dr , LocalDate d , LocalTime t , Priorité p, EtatRealisation e){
+        super(n,dr,d,t,p,e);
     }
     @Override
     public boolean planifier(Planning plan ) {
@@ -104,6 +104,16 @@ public class TacheDecomposable extends Tache implements Decomposable {
         else {
             setDurée(dureeinitiale);
             return creneaus;
+        }
+    }
+
+    public void DefineEtatRealisation(){
+        //L'état delayed
+        for (TacheSimple t : tachesSimples){
+            if (t.getEtat() == EtatRealisation.Delayed) {
+                setEtat(EtatRealisation.Delayed);
+                return;
+            }
         }
     }
 

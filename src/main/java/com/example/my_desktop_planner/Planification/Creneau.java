@@ -116,8 +116,8 @@ public class Creneau implements Comparable <Creneau> , Decomposable{
             if ( duree.minus(tache.getDurée()).compareTo(dureemin) >= 0 ){
                  //On fait la décompostion du créneau
                 duree = tache.getDurée() ;
+                Creneau newcren = new Creneau(debut.plus(duree) , fin , dureemin , datejournée) ;
                 fin = debut.plus(duree) ;
-                Creneau newcren = new Creneau(fin , fin.plus(duree.minus(tache.getDurée())) , dureemin , datejournée) ;
                 Journée j = plan.Rechjournee(datejournée) ;
                 plan.getCreneauxLibres().add(newcren) ;
                 //Traiter le cas d'ajout d'un créneau libre

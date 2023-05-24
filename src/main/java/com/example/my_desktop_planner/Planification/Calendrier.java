@@ -9,10 +9,6 @@ public class Calendrier {
     private TreeSet<Journée> journées = new TreeSet<>() ;
     private List<Planning> plannings  ;
 
-
-
-
-
     public void setJournées(TreeSet<Journée> jrs){
         journées = jrs ;
     }
