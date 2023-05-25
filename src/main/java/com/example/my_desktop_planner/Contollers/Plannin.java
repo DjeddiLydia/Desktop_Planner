@@ -26,6 +26,7 @@ import java.util.ResourceBundle;
 public class Plannin implements Initializable {
 
     private Utilisateur utilisateur;
+    private Stage stage ;
 
     public Plannin(Utilisateur user) {
         this.utilisateur = user;
@@ -34,7 +35,7 @@ public class Plannin implements Initializable {
     @FXML
     private ScrollPane scroll;
     @FXML
-    private Button Refresh , PlannificationAuto , RetourHome;
+    private Button Refresh , PlannificationAuto , valider , annuler;
 
     private HBox innerBoxContainer = new HBox() ;
 
@@ -75,8 +76,9 @@ public class Plannin implements Initializable {
                 for (Creneau c : j.getCreneaus()) {
                     Box innerBox = new Box(c, this.utilisateur);
                     innerBox.setPrefSize(150, 50);
-                    innerBox.setStyle("-fx-background-color: #DDDDDD;");
-                    innerBox.setStyle("-fx-border-color:  #845EF1;");
+
+
+
                     vbox.getChildren().add(innerBox);
                 }
 
@@ -99,6 +101,21 @@ public class Plannin implements Initializable {
 
         });
 
+        valider.setOnMouseClicked(actionEvent -> {
+
+            this.stage.close(); ;
+
+
+        });
+
+        annuler.setOnMouseClicked(actionEvent -> {
+
+            this.stage.close(); ;
+
+
+
+        });
+
 
 
 
@@ -115,7 +132,7 @@ public class Plannin implements Initializable {
         loader.setControllerFactory(obj-> new PlannificationAuto(this.utilisateur));
 
         Scene scene = new Scene(loader.load());
-        Stage stage = new Stage() ;
+        stage = new Stage() ;
         stage.setScene(scene);
         stage.show();
 

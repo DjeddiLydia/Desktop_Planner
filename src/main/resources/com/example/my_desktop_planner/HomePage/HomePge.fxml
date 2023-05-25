@@ -1,44 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="548.0" prefWidth="1021.0" stylesheets="@Hp.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.my_desktop_planner.Contollers.HomePageContro">
    <children>
       <BorderPane layoutX="-6.0" layoutY="-7.0" prefHeight="611.0" prefWidth="1027.0">
          <right>
-            <Pane prefHeight="611.0" prefWidth="514.0" BorderPane.alignment="CENTER" />
+            <Pane prefHeight="611.0" prefWidth="611.0" style="-fx-background-color: #F1F8FA;" BorderPane.alignment="CENTER">
+               <children>
+                  <Text layoutX="35.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Catégorie : ">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <ScrollPane fx:id="scroll1" layoutX="27.0" layoutY="116.0" prefHeight="191.0" prefWidth="203.0" />
+                  <AnchorPane fx:id="Categ" layoutX="344.0" layoutY="24.0" prefHeight="157.0" prefWidth="245.0" style="-fx-background-color: #E1EFF2;" visible="false">
+                     <children>
+                        <Text layoutX="29.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom : " />
+                        <Text layoutX="27.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Couleur" />
+                        <ColorPicker fx:id="colorPicker" layoutX="110.0" layoutY="90.0" prefHeight="25.0" prefWidth="88.0" />
+                        <TextField fx:id="nom" layoutX="100.0" layoutY="36.0" prefHeight="25.0" prefWidth="103.0" />
+                        <Text layoutX="13.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Catégorie" />
+                        <Button fx:id="Ajouter" layoutX="179.0" layoutY="124.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Ajouter" />
+                     </children>
+                  </AnchorPane>
+                  <Button fx:id="plus" layoutX="183.0" layoutY="57.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="plus" />
+               </children></Pane>
          </right>
          <center>
-            <AnchorPane fx:id="anchorPane" prefHeight="611.0" prefWidth="389.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="anchorPane" prefHeight="611.0" prefWidth="235.0" BorderPane.alignment="CENTER">
                <children>
-                  <DatePicker fx:id="datePicker" layoutX="84.0" layoutY="61.0" />
-                  <ScrollPane fx:id="scrollPane" layoutX="52.0" layoutY="135.0" prefHeight="443.0" prefWidth="272.0">
+                  <DatePicker fx:id="datePicker" layoutX="43.0" layoutY="62.0" />
+                  <ScrollPane fx:id="scrollPane" layoutX="42.0" layoutY="129.0" prefHeight="340.0" prefWidth="205.0">
                     <content>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="441.0" prefWidth="273.0" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="341.0" prefWidth="204.0" />
                     </content>
                   </ScrollPane>
                </children></AnchorPane>
          </center>
          <left>
-            <AnchorPane prefHeight="611.0" prefWidth="171.0" style="-fx-background-color: #A7D2F7;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="611.0" prefWidth="157.0" style="-fx-background-color: #A7D2F7;" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="ajouterPlanning" layoutX="35.0" layoutY="126.0" mnemonicParsing="false" text="Ajouter Planning" />
-                  <Button fx:id="AjouterTache" layoutX="37.0" layoutY="217.0" mnemonicParsing="false" text="Ajouter Taches" />
-                  <Label layoutX="45.0" layoutY="30.0" text="User" textFill="#0009ff">
+                  <Button fx:id="ajouterPlanning" layoutX="24.0" layoutY="135.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Ajouter Planning" />
+                  <Button fx:id="AjouterTache" layoutX="29.0" layoutY="225.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Ajouter Taches" />
+                  <Label fx:id="user" layoutX="45.0" layoutY="30.0" prefHeight="34.0" prefWidth="60.0" text="User" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="23.0" />
                      </font>
                   </Label>
-                  <Button fx:id="AjouterTache1" layoutX="38.0" layoutY="264.0" mnemonicParsing="false" text="Ajouter Projet" />
-                  <Button fx:id="deconnexion" layoutX="26.0" layoutY="555.0" mnemonicParsing="false" text="Deconnexion" />
-                  <Button fx:id="VoirPlanning" layoutX="18.0" layoutY="170.0" mnemonicParsing="false" text="Voir le planning récent" />
+                  <Button fx:id="AjouterTache1" layoutX="30.0" layoutY="272.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Ajouter Projet" />
+                  <Button fx:id="deconnexion" layoutX="28.0" layoutY="556.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Deconnexion" />
+                  <Button fx:id="VoirPlanning" layoutX="11.0" layoutY="178.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Voir le planning récent" />
                </children>
             </AnchorPane>
          </left>

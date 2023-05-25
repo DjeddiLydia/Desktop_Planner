@@ -58,6 +58,7 @@ public class App implements Serializable {
         String desktopPath = System.getProperty("user.home") + "/Desktop";
         Path filePath = Paths.get(desktopPath, fileName);
         try (FileInputStream fileIn = new FileInputStream(filePath.toFile());
+
              ObjectInputStream objectIn = new ObjectInputStream(fileIn)) {
             app = (App) objectIn.readObject();
             System.out.println("App information loaded from file: " + fileName);

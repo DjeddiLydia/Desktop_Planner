@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -57,12 +58,16 @@ public class Box extends VBox {
         this.getChildren().addAll(HD , libre , tache  ,  HF );
         if (creanau.getTache()!=null) {
 
+            String hexColor = convertToHexa(Color.valueOf(creanau.getTache().getCouleur()))  ;
+            this.setStyle("-fx-background-color: " + hexColor + ";");
+
             String time1 = creanau.getTache().getHeurelimite().format(formater);
 
             Label TL = new Label("time limit " +time1) ;
             this.getChildren().addAll(new Label("Durée tache " + creanau.getTache().getDurée().toString()) , new Label( "Date limite "+( creanau.getTache().getDateLimite()).format(formatter1) ), TL  ) ;
 
         }
+        else { this.setStyle("-fx-border-color:  #FFB775;");}
 
         this.setOnMouseClicked(event -> {
 
@@ -89,6 +94,11 @@ public class Box extends VBox {
         stage.show();
 
 
+    }
+    public String convertToHexa (Color c ) {
+        String hexString = String.format("#%02X%02X%02X", (int)(c.getRed() * 255),
+                (int)(c.getGreen() * 255), (int)(c.getBlue() * 255));
+        return hexString ;
     }
 
 

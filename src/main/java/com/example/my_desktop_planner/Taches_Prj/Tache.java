@@ -13,6 +13,7 @@ public abstract class Tache implements Serializable {
     private LocalDate dateLimite  ;
     private LocalTime heurelimite ;
     private Priorité priorité ;
+    private String couleur ;
 
     private EtatRealisation etat ;
 
@@ -124,5 +125,13 @@ public abstract class Tache implements Serializable {
             return Priorité.Low ;
         }
         else return null ;
+    }
+
+    public String getCouleur() {
+        return couleur;
+    }
+
+    public void setCouleur(String couleur) {
+        this.couleur = couleur;
     }
 }

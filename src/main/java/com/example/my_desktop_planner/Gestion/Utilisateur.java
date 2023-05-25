@@ -21,7 +21,7 @@ public class Utilisateur implements Serializable {
 
     private Calendrier calendrier = new Calendrier()  ;
 
-    private Planning planning  ;
+    private Planning planning  = new Planning() ;
 
     private ArrayList<Tache >  taches = new ArrayList<>();
 
@@ -82,6 +82,8 @@ public class Utilisateur implements Serializable {
             planning.setJournées(calendrier.creerJournéesPeriode(debut,fin));
         }
     }
+
+    public TreeSet<Catégorie> getCatégories(){return this.catégories; }
 
     //Rajouter un créneau pour toutes les journées du planning
     public void ajouterCreneauPeriode(LocalDate debut , LocalDate fin,Creneau c){
@@ -170,6 +172,15 @@ public class Utilisateur implements Serializable {
 
     public void classerTacheDansCatég(Tache t , Catégorie g ){
         g.addTask(t);
+    }
+
+    public Catégorie rechCategorie(String str){
+        for (Catégorie c : catégories){
+            if (c.getName().equals(str)){
+                return  c ;
+            }
+        }
+        return null ;
     }
 
 

@@ -1,6 +1,7 @@
 package com.example.my_desktop_planner.Contollers;
 
 import com.example.my_desktop_planner.Gestion.Utilisateur;
+import com.example.my_desktop_planner.Taches_Prj.Catégorie;
 import com.example.my_desktop_planner.Taches_Prj.Tache;
 import com.example.my_desktop_planner.Taches_Prj.TacheDecomposable;
 import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
@@ -23,7 +24,7 @@ public class AjouterTache implements Initializable {
     private RadioButton simple  , decomp ;
 
     @FXML
-    private MenuButton H , MIN , H1 , MIN1 , priorité;
+    private MenuButton H , MIN , H1 , MIN1 , priorité , categ;
 
     @FXML
     private Button Ajouter ;
@@ -135,6 +136,18 @@ public class AjouterTache implements Initializable {
             MIN1.getItems().add(menuItem);
         }
 
+        for (Catégorie c : utilisateur.getCatégories()) {
+
+
+            MenuItem menuItem = new MenuItem(c.getName());
+            menuItem.setOnAction(event -> {
+                categ.setText(c.getName()); // Set the selected font as the text of the MenuButton
+
+            });
+
+            categ.getItems().add(menuItem);
+        }
+
         Ajouter.setOnMouseClicked(actionEvent -> {
 
             if (nom.getText()==null )
@@ -158,15 +171,25 @@ public class AjouterTache implements Initializable {
             else {ErrorType.setVisible(false); }
             if (  !( ErrorType.isVisible()&ErrorDurée.isVisible() & ErrorDate.isVisible() & ErrorNom.isVisible() & ErrorHeure.isVisible() )  )
 
-            {   if (simple.isSelected())
+            {  Catégorie c = utilisateur.rechCategorie(categ.getText()) ;
+                if (simple.isSelected())
             {  System.out.println("TACHE AJOUTER");
                 TacheSimple tachesimple = new TacheSimple(nom.getText() ,convertToDuree(H.getText() , MIN.getText() )  , deadline.getValue() , convertToTime(H1.getText() , MIN1.getText() ), Tache.StringToPropriete(priorité.getText()) ,Integer.parseInt(periodicité.getText()) );
+                if (c!=null)
+                { c.addTask(tachesimple);
+                    tachesimple.setCouleur(c.getCouleur());
+                }
                 utilisateur.ajoutTache(tachesimple );
             } }
 
                 {   if (decomp.isSelected())
                 {
                     TacheDecomposable tacheDecomposable = new TacheDecomposable(nom.getText() ,convertToDuree(H.getText() , MIN.getText() )  , deadline.getValue() , convertToTime(H1.getText() , MIN1.getText() ), Tache.StringToPropriete(priorité.getText())  );
+                    Catégorie c = utilisateur.rechCategorie(categ.getText()) ;
+                    if (c!=null)
+                    { c.addTask(tacheDecomposable);
+                        tacheDecomposable.setCouleur(c.getCouleur());
+                    }
                     utilisateur.ajoutTache(tacheDecomposable );
                 }
 

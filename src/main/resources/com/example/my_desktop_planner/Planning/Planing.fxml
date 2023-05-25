@@ -14,8 +14,9 @@
             <Font size="26.0" />
          </font>
       </Text>
-      <Button fx:id="PlannificationAuto" layoutX="179.0" layoutY="21.0" mnemonicParsing="false" text="Plannification Automatique" />
-      <Button fx:id="Refresh" layoutX="867.0" layoutY="18.0" mnemonicParsing="false" text="Refresh" />
-      <Button fx:id="RetourHome" layoutX="15.0" layoutY="510.0" mnemonicParsing="false" text="Retour Home" />
+      <Button fx:id="PlannificationAuto" layoutX="179.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Plannification Automatique" />
+      <Button fx:id="Refresh" layoutX="867.0" layoutY="18.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Refresh" />
+      <Button fx:id="valider" layoutX="809.0" layoutY="506.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Validez le planning" />
+      <Button fx:id="annuler" layoutX="722.0" layoutY="506.0" mnemonicParsing="false" style="-fx-background-color: #A6E1EE;" text="Annuler" />
    </children>
 </AnchorPane>
