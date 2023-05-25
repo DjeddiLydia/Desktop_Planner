@@ -54,7 +54,10 @@ public class Journée implements Comparable<Journée>  , Serializable {
     public TreeSet<Creneau> listCreneauxLibres(){
         TreeSet<Creneau> crenlibres = new TreeSet<>() ;
         for (Creneau c : creneaus){
-             if (c.crenLibre()) crenlibres.add(c) ;
+             if (c.crenLibre()) {
+                 crenlibres.add(c) ;
+                 System.out.println("Cren Libre de la journée :"+c.getDatejournée());
+             }
         }
         return  crenlibres ;
     }

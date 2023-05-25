@@ -37,6 +37,7 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
                     c.decomposer(plan);//Ajouter le cas de la durée minimale
                     c.rendreoccupé();
                     plan.getCreneauxLibres().remove(c);
+                    c = plan.getCreneauxLibres().first() ;
                     return true;
                 }
             }
@@ -52,6 +53,9 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
         else t.setDurée(getDurée());
         setDurée(getDurée().minus(t.getDurée()));
         tachesSimples.add(t) ;
+        t.setCategorie(getCategorie());
+        c.ajoutTache(t) ;
+        c.rendreoccupé();
         System.out.println("CR " + c.getDatejournée() );
 
     }
@@ -62,7 +66,7 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
         if (creneaus!=null){
             for (Creneau c : creneaus){
                 c.rendreoccupé();
-                plan.getCreneauxLibres().remove(c) ;
+                //plan.getCreneauxLibres().remove(c) ;
             }
             return true ;
         }
@@ -91,26 +95,34 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
     public TreeSet<Creneau> proposerDecomposition(Planning plan){
         int i = 1 ; //Numéro de la sous tache
         TreeSet<Creneau> creneaus = new TreeSet<>() ;
+        plan.setCreneauxLibres();
         Iterator<Creneau> iterator = plan.getCreneauxLibres().iterator() ;
+        for (Creneau crf: plan.getCreneauxLibres() ){
+            System.out.println("Cr Trouvé");
+        }
         Creneau cr ;
         Duration dureeinitiale = getDurée() ;
         while (getDurée().compareTo(Duration.ZERO) > 0 && iterator.hasNext()) {
             cr = iterator.next() ;
             if (!getDateLimite().isBefore(cr.getDatejournée())) {
                 gérerSousTache(i, cr);
+                System.out.println("Durée restante : "+getDurée());
                 creneaus.add(cr) ;
                 i++;
             }
             else{
                 System.out.println("Deadline dépassé");
                 setDurée(dureeinitiale);
-                return null ;
+                //return null ;
+                return creneaus ;
             }
+            System.out.println("Next "+iterator.hasNext());
         }
         if (getDurée().compareTo(Duration.ZERO) > 0) {
             setDurée(dureeinitiale);
             System.out.println("Pas de créneaux suffisants");
-            return null ;
+            return creneaus ;
+           // return null ;
         }
         else {
             setDurée(dureeinitiale);
@@ -119,12 +131,42 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
     }
 
     public void DefineEtatRealisation(){
-        //L'état delayed
-        for (TacheSimple t : tachesSimples){
-            if (t.getEtat() == EtatRealisation.Delayed) {
-                setEtat(EtatRealisation.Delayed);
-                return;
-            }
+        boolean stop = false ;
+        int i =0 ;
+        TacheSimple t = tachesSimples.get(i) ;
+        while (!stop && i!=tachesSimples.size()){
+            if (!t.getEtat().equals(EtatRealisation.Completed)) stop=true ;
+            i++ ;
+            t = tachesSimples.get(i) ;
+        }
+        if (!stop) {
+            setEtat(EtatRealisation.Completed);
+            return;
+        }
+        i =0 ;
+        stop = false ;
+        t = tachesSimples.get(i) ;
+        while (!stop && i!=tachesSimples.size()){
+            if (!t.getEtat().equals(EtatRealisation.Cancelled)) stop=true ;
+            i++ ;
+            t = tachesSimples.get(i) ;
+        }
+        if (!stop) {
+            setEtat(EtatRealisation.Cancelled);
+            return;
+        }
+
+        i =0 ;
+        stop = false ;
+        t = tachesSimples.get(i) ;
+        while (!stop && i!=tachesSimples.size()){
+            if (!t.getEtat().equals(EtatRealisation.Cancelled)) stop=true ;
+            i++ ;
+            t = tachesSimples.get(i) ;
+        }
+        if (!stop) {
+            setEtat(EtatRealisation.Cancelled);
+            return;
         }
     }
 }

@@ -12,6 +12,7 @@ import com.example.my_desktop_planner.Taches_Prj.TacheSimple;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 public class Utilisateur implements Serializable {
@@ -117,14 +118,17 @@ public class Utilisateur implements Serializable {
 
 
     //Trier le tableau des taches selon la priorité puis la date deadline puis l'heure du deadline
-    public static void trierTaches(ArrayList<Tache> taches){
+    public static ArrayList<Tache> trierTaches(ArrayList<Tache> taches){
         Collections.sort(taches , Comparator.comparing(Tache :: getDateLimite).thenComparing(Tache :: getHeurelimite).thenComparing(Tache :: getPriorité));
+        return taches ;
+
     }
 
 
     public boolean PlanifAuto( ArrayList<Tache> taches ){
         int i=0 ;
         if (!taches.isEmpty()) {
+            trierTaches(taches);
             while (i != taches.size()) {
                 Tache t = taches.get(i);
                 planning.setCreneauxLibres();
@@ -182,6 +186,21 @@ public class Utilisateur implements Serializable {
         }
         return null ;
     }
+
+
+    public static String TimeToHeuresString(LocalTime t){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:00") ;
+        return t.format(formatter) ;
+    }
+
+
+    public static String TimeToMinString(LocalTime t){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("mm") ;
+        return t.format(formatter) ;
+    }
+
+
+
 
 
 }

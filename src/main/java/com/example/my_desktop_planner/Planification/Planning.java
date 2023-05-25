@@ -42,7 +42,7 @@ public class Planning implements Serializable {
     }
 
     public TreeSet<Creneau> getCreneauxLibres() {
-       return this.listCreneauxLibres() ;
+       return this.creneauxLibres ;
     }
 
     public static boolean verifDateDebut(LocalDate d ){
@@ -96,6 +96,7 @@ public class Planning implements Serializable {
     public TreeSet<Creneau> listCreneauxLibres(){
         TreeSet<Creneau> crenlibres = new TreeSet<>() ;
         for (Journée j : journées){
+            System.out.println("Ajout de créneaux livre de "+j.getDate());
             crenlibres.addAll(j.listCreneauxLibres()) ;
         }
         return  crenlibres ;

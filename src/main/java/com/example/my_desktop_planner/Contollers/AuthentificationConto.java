@@ -40,7 +40,7 @@ public class AuthentificationConto implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-       app = App.loadFromFile("App");
+       app = new App() ;
 
 
 

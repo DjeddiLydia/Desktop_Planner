@@ -56,7 +56,13 @@ public class PlannificationAuto implements Initializable {
         }
 
         Plannifier.setOnMouseClicked(mouseEvent -> {
-           Utilisateur.trierTaches(taches);
+            for (Tache tache: taches) {
+                System.out.println("Nom : "+tache.getNom());
+                System.out.println("Date Limite : "+tache.getDateLimite());
+                System.out.println("Heure Limite : "+tache.getHeurelimite());
+                System.out.println("Priorité : "+tache.getPriorité());
+            }
+            taches = Utilisateur.trierTaches(taches);
            System.out.println(utilisateur.PlanifAuto(taches) );
 
 

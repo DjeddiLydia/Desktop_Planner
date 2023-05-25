@@ -15,7 +15,10 @@ public abstract class Tache implements Serializable {
     private Priorité priorité ;
     private String couleur ;
 
+    private String categorie ;
+
     private EtatRealisation etat ;
+
 
     public Tache(String n , LocalDate d , LocalTime t , Priorité p){
         nom = n ;
@@ -40,6 +43,14 @@ public abstract class Tache implements Serializable {
         heurelimite = t ;
         priorité = p ;
         durée = dr ;
+    }
+
+    public String getCategorie() {
+        return categorie;
+    }
+
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
     }
 
     public EtatRealisation getEtat() {
@@ -126,6 +137,20 @@ public abstract class Tache implements Serializable {
         }
         else return null ;
     }
+
+    public String PrioriteToString(){
+        if (priorité.equals(Priorité.High)){
+            return  "High" ;
+        }
+        if (priorité.equals(Priorité.Medium)){
+            return  "Medium" ;
+        }
+        if (priorité.equals(Priorité.Low)){
+            return  "Low" ;
+        }
+        return null ;
+    }
+
 
     public String getCouleur() {
         return couleur;

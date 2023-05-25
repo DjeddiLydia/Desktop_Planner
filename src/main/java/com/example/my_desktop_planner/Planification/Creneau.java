@@ -82,13 +82,18 @@ public class Creneau implements Comparable <Creneau> , Decomposable , Serializab
     public boolean equals(Object o ){
         if (this ==o ) return true ;
         if (o== null || o.getClass()!= getClass()) return false ;
+        if (getDatejournée().isEqual(((Creneau) o).datejournée)) {
 
-        if (this.getDebut().equals(((Creneau) o).getDebut()) & this.getFin().equals(((Creneau) o).getFin())) return true ;
+            if (this.getDebut().equals(((Creneau) o).getDebut()) & this.getFin().equals(((Creneau) o).getFin()))
+                return true;
 
-        if (this.getDebut().isAfter(((Creneau) o).getDebut() )  & ((this.getDebut().isAfter(((Creneau) o).getFin() ))) || (this.getDebut().equals(((Creneau) o).getFin() )))  return false ;
-        if (this.getDebut().isBefore(((Creneau) o).getDebut() )  & ((this.getFin().isBefore(((Creneau) o).getDebut() ))) || (this.getFin().equals(((Creneau) o).getDebut() )))  return false ;
+            if (this.getDebut().isAfter(((Creneau) o).getDebut()) & ((this.getDebut().isAfter(((Creneau) o).getFin()))) || (this.getDebut().equals(((Creneau) o).getFin())))
+                return false;
+            if (this.getDebut().isBefore(((Creneau) o).getDebut()) & ((this.getFin().isBefore(((Creneau) o).getDebut()))) || (this.getFin().equals(((Creneau) o).getDebut())))
+                return false;
+            else return true;
+        }
         else return true ;
-
     }
 
     @Override
@@ -98,7 +103,10 @@ public class Creneau implements Comparable <Creneau> , Decomposable , Serializab
 
     @Override
     public int compareTo(Creneau autreCreneau) {
-        return debut.compareTo(autreCreneau.getDebut());
+        if (datejournée.isEqual(autreCreneau.getDatejournée())) {
+            return debut.compareTo(autreCreneau.getDebut());
+        }
+        else return datejournée.compareTo(autreCreneau.getDatejournée());
     }
 
     public boolean ajoutTache(Tache t){

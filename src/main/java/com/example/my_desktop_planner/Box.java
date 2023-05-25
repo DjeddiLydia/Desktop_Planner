@@ -57,9 +57,11 @@ public class Box extends VBox {
 
         this.getChildren().addAll(HD , libre , tache  ,  HF );
         if (creanau.getTache()!=null) {
+            if(creanau.getTache().getCouleur()!= null){
 
             String hexColor = convertToHexa(Color.valueOf(creanau.getTache().getCouleur()))  ;
-            this.setStyle("-fx-background-color: " + hexColor + ";");
+            this.setStyle("-fx-background-color: " + hexColor + ";"); }
+            else {  this.setStyle("-fx-border-color:  #FFB775;"); }
 
             String time1 = creanau.getTache().getHeurelimite().format(formater);
 
