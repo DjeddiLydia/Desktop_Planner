@@ -55,7 +55,6 @@ public class Plannin implements Initializable {
 
         while (!date.isAfter(utilisateur.getPlanning().getFin())) {
 
-            System.out.println(date);
 
             VBox vbox = new VBox();
             vbox.setSpacing(5);

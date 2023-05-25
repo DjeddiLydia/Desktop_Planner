@@ -15,7 +15,7 @@ import java.util.TreeSet;
 
 public class TacheDecomposable extends Tache implements Decomposable , Serializable {
 
-    private ArrayList<TacheSimple> tachesSimples  ;
+    private ArrayList<TacheSimple> tachesSimples   = new ArrayList<>();
 
 
     public TacheDecomposable(String n , LocalDate d , LocalTime t , Priorité p){
@@ -32,7 +32,7 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
     @Override
     public boolean planifier(Planning plan ) {
         for (Creneau c : plan.getCreneauxLibres() ){
-            if ( !getDateLimite().isAfter(c.getDatejournée())) {
+            if ( !getDateLimite().isBefore(c.getDatejournée())) {
                 if (c.ajoutTache(this)) {
                     c.decomposer(plan);//Ajouter le cas de la durée minimale
                     c.rendreoccupé();
@@ -52,7 +52,8 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
         else t.setDurée(getDurée());
         setDurée(getDurée().minus(t.getDurée()));
         tachesSimples.add(t) ;
-        c.ajoutTache(t) ;
+        System.out.println("CR " + c.getDatejournée() );
+
     }
 
     @Override
@@ -66,7 +67,7 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
             return true ;
         }
         else {
-            System.out.println("");
+            System.out.println("Liste de créneaux vide ");
             return false ;
         }
        /* int i = 1 ; //Numéro de la sous tache
@@ -95,19 +96,20 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
         Duration dureeinitiale = getDurée() ;
         while (getDurée().compareTo(Duration.ZERO) > 0 && iterator.hasNext()) {
             cr = iterator.next() ;
-            if (!getDateLimite().isAfter(cr.getDatejournée())) {
-
+            if (!getDateLimite().isBefore(cr.getDatejournée())) {
                 gérerSousTache(i, cr);
                 creneaus.add(cr) ;
                 i++;
             }
             else{
+                System.out.println("Deadline dépassé");
                 setDurée(dureeinitiale);
                 return null ;
             }
         }
         if (getDurée().compareTo(Duration.ZERO) > 0) {
             setDurée(dureeinitiale);
+            System.out.println("Pas de créneaux suffisants");
             return null ;
         }
         else {
@@ -125,7 +127,4 @@ public class TacheDecomposable extends Tache implements Decomposable , Serializa
             }
         }
     }
-
-
-
 }

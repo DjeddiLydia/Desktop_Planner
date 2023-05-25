@@ -95,7 +95,7 @@ public class Utilisateur implements Serializable {
                     Journée jr = new Journée(date);
                     jr.ajouterCreneau(c1);
                     planning.ajouterjournée(jr);
-                    planning.getCreneauxLibres().add(c1) ;
+                   // planning.getCreneauxLibres().add(c1) ;
                 }
                 date = date.plusDays(1);
             }
@@ -109,7 +109,7 @@ public class Utilisateur implements Serializable {
             Journée jr = new Journée(date);
             jr.ajouterCreneau(c);
             planning.ajouterjournée(jr);
-            planning.getCreneauxLibres().add(c) ;
+          //  planning.getCreneauxLibres().add(c) ;
         }
     }
 
@@ -125,6 +125,7 @@ public class Utilisateur implements Serializable {
         if (!taches.isEmpty()) {
             while (i != taches.size()) {
                 Tache t = taches.get(i);
+                planning.setCreneauxLibres();
                 if (t instanceof TacheSimple){
                      if (t.planifier(planning)) ;
                      else {

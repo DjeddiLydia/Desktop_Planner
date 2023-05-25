@@ -42,7 +42,7 @@ public class Planning implements Serializable {
     }
 
     public TreeSet<Creneau> getCreneauxLibres() {
-        return creneauxLibres;
+       return this.listCreneauxLibres() ;
     }
 
     public static boolean verifDateDebut(LocalDate d ){
@@ -68,10 +68,10 @@ public class Planning implements Serializable {
         Iterator<Journée> iterator = journées.iterator() ;
         if (iterator.hasNext()) {
             Journée jr = iterator.next();
-            while ((jr.getDate() != d) && iterator.hasNext()) {
+            while (!(jr.getDate().isEqual(d)) && iterator.hasNext()) {
                 jr = iterator.next();
             }
-            if (jr.getDate() == d) return jr;
+            if (jr.getDate().isEqual(d)) return jr;
             else return null;
         }
         else return null ;
@@ -86,7 +86,8 @@ public class Planning implements Serializable {
     public Journée rechercheJour (LocalDate date){
         for (Journée j : journées) {
             if (j.getDate().equals(date) ) return j ; }
-    return null ; }
+        return null ;
+    }
 
     public void ajouterjournée(Journée j){
         journées.add(j) ;
